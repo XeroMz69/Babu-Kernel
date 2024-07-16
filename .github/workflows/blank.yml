@@ -1,4 +1,4 @@
-name: Kernel Builder
+name: No KSU
 
 on:
   workflow_dispatch:
