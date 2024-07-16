@@ -8,7 +8,7 @@ CLANG_DIR="$WORKDIR/Clang/bin"
 
 # Kernel Source
 KERNEL_NAME="LKernel"
-KERNEL_GIT="https://github.com/XeroMz69/android_kernel_xiaomi_earth"
+KERNEL_GIT="https://github.com/picasso09/kernel-earth-S-OSS.git"
 KERNEL_BRANCH="lineage-21"
 KERNEL_DIR="$WORKDIR/$KERNEL_NAME"
 
@@ -32,13 +32,10 @@ DTB="$KERNEL_DIR/out/arch/arm64/boot/dts/mediatek/mt6768.dtb"
 DTBO_EARTH="$KERNEL_DIR/out/arch/arm64/boot/dts/mediatek/earth.dtbo"
 DTBO="$KERNEL_DIR/out/arch/arm64/boot/dtbo.img"
 
-KERNELSU_SUPPORT="true"
-KERNELSU_VERSION="none"
-
 MAKE_BOOTIMG="false"
 PERMISSIVE_BOOTIMG="false"
 
-export KBUILD_BUILD_USER="ARUN V"
+export KBUILD_BUILD_USER="ARUNll"
 export KBUILD_BUILD_HOST="GitHubCI"
 
 cd $WORKDIR
@@ -61,20 +58,6 @@ git clone --depth=1 $KERNEL_GIT -b $KERNEL_BRANCH $KERNEL_DIR
 cd $KERNEL_DIR
 KERNEL_HEAD_HASH=$(git log --pretty=format:'%H' -1)
 
-if [ $KERNELSU_SUPPORT = "true" ]; then
-    echo "Patching KernelSU"
-    curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-    KSU_GIT_VERSION=$(cd KernelSU && git rev-list --count HEAD)
-    KERNELSU_VERSION=$(($KSU_GIT_VERSION + 10000 + 200))
-    echo "KernelSU version: $KERNELSU_VERSION"
-
-    # Enable KernelSU
-    echo -e "CONFIG_KPROBES=y" >> arch/arm64/configs/$DEVICE_DEFCONFIG
-    echo -e "CONFIG_HAVE_KPROBES=y" >> arch/arm64/configs/$DEVICE_DEFCONFIG
-    echo -e "CONFIG_KPROBE_EVENTS=y" >> arch/arm64/configs/$DEVICE_DEFCONFIG
-
-    cat arch/arm64/configs/$DEVICE_DEFCONFIG
-fi
 
 # Build Kernel
 echo "Started Compilation"
@@ -131,12 +114,12 @@ echo "
 Build Configs
 - Device: $DEVICE_CODE
 - Kernel Version: $KERNEL_VERSION
-- Build Time: $(TZ='Asia/Kolkata' date +"%Y-%m-%d %H:%M:%S")
+- Build Time: $(TZ='Asia/Jakarta' date +"%Y-%m-%d %H:%M:%S")
 " >> $WORKDIR/AnyKernel3/banner
 
 # Pack File
-time=$(TZ='Asia/Kolkata' date +"%Y-%m-%d %H:%M:%S")
-ZIP_NAME="Kernel-Build"
+time=$(TZ='Asia/Jakarta' date +"%Y-%m-%d %H:%M:%S")
+ZIP_NAME="No-KSU"
 find ./ * -exec touch -m -d "$time" {} \;
 zip -r9 $ZIP_NAME.zip *
 cp *.zip $WORKDIR/out
