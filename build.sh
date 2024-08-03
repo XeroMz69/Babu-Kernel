@@ -7,9 +7,9 @@ CLANG_DLINK="https://github.com/ZyCromerZ/Clang/releases/download/19.0.0git-2024
 CLANG_DIR="$WORKDIR/Clang/bin"
 
 # Kernel Source
-KERNEL_NAME="LKernel"
-KERNEL_GIT="https://github.com/picasso09/kernel-earth-S-OSS.git"
-KERNEL_BRANCH="lineage-21"
+KERNEL_NAME="Fire"
+KERNEL_GIT="https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git"
+KERNEL_BRANCH="fire-t-oss"
 KERNEL_DIR="$WORKDIR/$KERNEL_NAME"
 
 # Anykernel3
@@ -35,7 +35,7 @@ DTBO="$KERNEL_DIR/out/arch/arm64/boot/dtbo.img"
 MAKE_BOOTIMG="false"
 PERMISSIVE_BOOTIMG="false"
 
-export KBUILD_BUILD_USER="ARUNll"
+export KBUILD_BUILD_USER="Xero"
 export KBUILD_BUILD_HOST="GitHubCI"
 
 cd $WORKDIR
