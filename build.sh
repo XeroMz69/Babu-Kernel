@@ -22,8 +22,8 @@ MAGISKBOOT="$WORKDIR/magiskboot/magiskboot"
 ORIGIN_BOOTIMG_DLINK="https://github.com/Jiovanni-dump/redmi_earth_dump/blob/missi_phone_global-user-13-TP1A.220624.014-V14.0.4.0.TCVMIXM-release-keys/boot.img"
 
 # Build
-DEVICE_CODENAME="earth"
-DEVICE_DEFCONFIG="earth_defconfig"
+DEVICE_CODENAME="fire"
+DEVICE_DEFCONFIG="fire_defconfig"
 DEVICE_DEFCONFIG_FILE="$KERNEL_DIR/arch/arm64/configs/$DEVICE_DEFCONFIG"
 
 IMAGE_GZ="$KERNEL_DIR/out/arch/arm64/boot/Image.gz"
@@ -87,6 +87,9 @@ LLVM=1"
 
 # LINUX KERNEL VERSION
 rm -rf out
+make clean
+make mrproper
+make $DEVICE_DEFCONFIG
 make O=out $args $DEVICE_DEFCONFIG
 KERNEL_VERSION=$(make O=out $args kernelversion | grep "4.19")
 echo "LINUX KERNEL VERSION : $KERNEL_VERSION"
