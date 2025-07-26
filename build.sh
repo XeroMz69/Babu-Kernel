@@ -3,7 +3,7 @@
 WORKDIR="$(pwd)"
 
 # Clang
-CLANG_DLINK="https://github.com/XeroMz69/Clang/releases/download/Xero-Clang-20250526.1/Xero-Clang-21.0.0git-20250526.tar.gz"
+CLANG_DLINK=$(curl -s https://api.github.com/repos/XeroMz69/Clang/releases/latest | sed 's/[()",{}]/ /g; s/ /\n/g' | grep "https.*.tar.gz")
 CLANG_DIR="$WORKDIR/Clang/bin"
 
 # Kernel Source
